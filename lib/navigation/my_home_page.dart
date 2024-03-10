@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quest_page.dart';
+import 'profile_page.dart';
 
 class MyHomePage extends StatefulWidget {
 
@@ -14,8 +15,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int  _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    Text('Hoome Page'),
+    Text('Home Page'),
     QuestPage(title: 'Quest Page'),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -42,6 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.question_answer),
             label: 'Quest',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
