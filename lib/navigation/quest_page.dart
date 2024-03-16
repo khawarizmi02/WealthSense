@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class QuestPage extends StatefulWidget {
 
   final String title;
-  const QuestPage({Key? key, required this.title}) : super(key: key);
+  const QuestPage({super.key, required this.title});
 
   @override
   _QuestPage createState() => _QuestPage();
