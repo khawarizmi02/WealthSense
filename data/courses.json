@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "title": "Introduction to Personal Finance",
+        "description": "Learn the basics of managing your personal finances.",
+        "lessons": [
+            {
+                "id": 1,
+                "title": "Understanding Income",
+                "content": "Learn about different types of income and how they can impact your financial health."
+            },
+            {
+                "id": 2,
+                "title": "Budgeting Basics",
+                "content": "Discover how to create a budget and stick to it."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Investing 101",
+        "description": "Get started with investing, from stocks and bonds to mutual funds and retirement accounts.",
+        "lessons": [
+            {
+                "id": 1,
+                "title": "What is Investing?",
+                "content": "Learn what investing is and why it's important."
+            },
+            {
+                "id": 2,
+                "title": "Understanding Risk and Reward",
+                "content": "Discover the relationship between risk and reward in investing."
+            }
+        ]
+    }
+]

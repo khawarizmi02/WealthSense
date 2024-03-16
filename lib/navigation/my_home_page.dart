@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'quest_page.dart';
 import 'profile_page.dart';
+import 'option_page.dart';
 
 class MyHomePage extends StatefulWidget {
 
@@ -8,16 +9,18 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
 
-  int  _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Home Page'),
     QuestPage(title: 'Quest Page'),
     ProfilePage(),
+    OptionPage(), // Add OptionPage widget here
   ];
 
   void _onItemTapped(int index) {
@@ -31,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-      ), 
+      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -39,18 +42,24 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Options',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.question_answer),
+            icon: Icon(Icons.inbox),
             label: 'Quest',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
+          BottomNavigationBarItem( // Add new BottomNavigationBarItem for OptionPage
+            icon: Icon(Icons.menu),
+            label: 'Options',
+          ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
       ),
     );

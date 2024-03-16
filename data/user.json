@@ -1,0 +1,13 @@
+{
+    "user": {
+        "name": "John Doe",
+        "age": 30,
+        "email": "johndoe@example.com"
+    },
+    "course": [
+        {
+            "course_id": 1,
+            "lessons_passed": 1
+        }
+    ]
+}
