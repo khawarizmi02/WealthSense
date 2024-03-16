@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'quest_page.dart';
 import 'profile_page.dart';
 import 'option_page.dart';
+import 'course_page.dart';
 
 class MyHomePage extends StatefulWidget {
 
@@ -34,6 +35,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        leading: IconButton(
+          icon: const Icon(Icons.book),
+          tooltip: 'Go to Course Page',
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CoursePage()),
+            );
+          },
+        ),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
