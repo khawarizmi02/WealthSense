@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'lesson/u1_1_page.dart';
 
 class CoursePage extends StatefulWidget {
   const CoursePage({super.key});
@@ -25,6 +26,17 @@ class _CoursePageState extends State<CoursePage> {
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.book),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UnitOneLessonOnePage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [
