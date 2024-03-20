@@ -33,19 +33,41 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        leading: IconButton(
-          icon: const Icon(Icons.book),
-          tooltip: 'Go to Course Page',
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CoursePage()),
-            );
-          },
+  appBar: AppBar(
+  title: Text(widget.title),
+  flexibleSpace: Stack(
+    children: [
+      Positioned(
+        left: 0,
+        right: 0,
+        bottom: 0,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center, // Center Row items
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CoursePage()),
+                  );
+                },
+                icon: const Icon(Icons.book),
+                tooltip: 'Go to course page',
+              ),
+              const Icon(Icons.local_fire_department, color: Colors.red),
+              const Text('streak count'),
+              const SizedBox(width: 20),
+              const Icon(Icons.favorite, color: Colors.red),
+              const Text('heart count'),
+            ],
+          ),
         ),
       ),
+    ],
+  ),
+),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
