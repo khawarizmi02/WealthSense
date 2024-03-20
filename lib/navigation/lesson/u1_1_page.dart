@@ -6,14 +6,8 @@ class UnitOneLessonOnePage extends StatefulWidget {
 }
 
 class _UnitOneLessonOnePageState extends State<UnitOneLessonOnePage> {
-  List<String> quizQuestions = ['Question 1...', 'Question 2...', 'Question 3...'];
-  List<List<String>> quizOptions = [
-    ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
-    ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
-    ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
-  ];
-  List<int> correctAnswers = [0, 2, 1]; // Indices of the correct answers in the options
-  List<int> selectedAnswers = [-1, -1, -1]; // Indices of the selected answers
+  late String _selectedOption = '';
+  final _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,90 +15,143 @@ class _UnitOneLessonOnePageState extends State<UnitOneLessonOnePage> {
       appBar: AppBar(
         title: const Text('Unit 1 Lesson 1'),
       ),
-      body: ListView(
+      body: Padding(
         padding: const EdgeInsets.all(16),
-        children: [
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                unitTitle,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                unitIntro,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                whyInvest,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                importanceOfPatience,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                riskAndReward,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                diversification,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          ),
-          const SizedBox(height: 32),
-          for (int i = 0; i < quizQuestions.length; i++)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Q${i + 1}. ${quizQuestions[i]}',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                for (int j = 0; j < quizOptions[i].length; j++)
-                  ListTile(
-                    title: Text(quizOptions[i][j]),
-                    leading: Radio<int>(
-                      value: j,
-                      groupValue: selectedAnswers[i],
-                      onChanged: (int? value) {
-                        setState(() {
-                          selectedAnswers[i] = value!;
-                        });
-                      },
+        child: PageView(
+          controller: _pageController,
+          children: [
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      unitTitle,
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
-                const SizedBox(height: 16),
-              ],
+                ),
+              ),
             ),
-        ],
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      unitIntro,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      whyInvest,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      importanceOfPatience,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      riskAndReward,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      diversification,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            for (var question in questions)
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Quiz Question: ${question['question']}',
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        ...question['options'].map((option) => RadioListTile<String>(
+                              title: Text(option),
+                              value: option,
+                              groupValue: _selectedOption,
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedOption = value!;
+                                });
+                              },
+                            )),
+                        ElevatedButton(
+                          onPressed: () {
+                            if (_selectedOption == question['answer']) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Correct!')),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Incorrect. The correct answer is: ${question['answer']}.')),
+                              );
+                            }
+                          },
+                          child: Text('Submit'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
+      backgroundColor: Colors.grey[200],
     );
   }
 String unitTitle = '## Unit 1: Investing Basics';
@@ -113,4 +160,22 @@ String whyInvest = '### Why Invest?\n\nInvesting allows you to significantly gro
 String importanceOfPatience = '### The Importance of Patience\n\nThe key to investing is to remain patient and to keep the money invested for a long period to allow the magic of compounding to work.';
 String riskAndReward = '### Risk and Reward\n\nInvesting involves risk, and you must be comfortable with a certain level of risk when investing. Remember, usually, higher potential returns involve higher risk.';
 String diversification = '### Diversification\n\nDiversification is a technique that reduces risk by allocating investments among various financial instruments. The idea is that some investments will do well at times when others are not.';
+
+List<Map<String, dynamic>> questions = [
+  {
+    'question': 'What is the main benefit of diversification in investing?',
+    'options': ['It reduces risk', 'It increases risk', 'It has no effect on risk'],
+    'answer': 'It reduces risk',
+  },
+  {
+    'question': 'What is the key to investing?',
+    'options': ['Patience', 'Impatience', 'Neither'],
+    'answer': 'Patience',
+  },
+  {
+    'question': 'What is the process of allocating resources, usually money, with the expectation of generating an income or profit?',
+    'options': ['Investing', 'Saving', 'Spending'],
+    'answer': 'Investing',
+  },
+];
 }
