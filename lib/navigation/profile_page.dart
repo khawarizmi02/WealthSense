@@ -25,8 +25,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
-        centerTitle: true,
+        title: Center( // Wrap the title with Center widget
+          child: Text('Profile'),
+        ),
       ),
       body: Center( // Center the content vertically
         child: SingleChildScrollView(
