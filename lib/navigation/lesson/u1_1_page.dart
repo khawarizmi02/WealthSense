@@ -148,6 +148,26 @@ class _UnitOneLessonOnePageState extends State<UnitOneLessonOnePage> {
                 ),
               ),
             ),
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Finish Lesson'),
+                        ),
+                      )
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

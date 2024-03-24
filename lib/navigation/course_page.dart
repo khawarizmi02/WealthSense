@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+//import 'package:wealthsense/navigation/my_home_page.dart';
 import 'lesson/u1_1_page.dart';
 
 class CoursePage extends StatefulWidget {
@@ -87,7 +88,12 @@ class _CoursePageState extends State<CoursePage> {
                             height: 50,
                             child: OutlinedButton(
                               onPressed: () {
-                                // Implement your logic here
+                                if(currentCourseIndex == 0) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => UnitOneLessonOnePage()),
+                                  );
+                                }
                               },
                               child: const Text('Start Now'),
                             ),
